@@ -1,0 +1,22 @@
+### Project files to ignore
+.idea
+__pycache__
+**/*.DS_Store
+~$*
+### Raw data files
+temp_data/
+**.pqt
+**.parquet
+**/*.pqt/
+**/*.tfdata/
+**/*.tfrecords/
+.tfrecords
+**/*.mp4
+
+#Key files
+**/*.key
+
+# Misc things
+arc/
+random/
+data/
