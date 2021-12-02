@@ -108,14 +108,15 @@ def build_auto_reg(hp: kt.HyperParameters) -> tf.keras.Model:
 
     weather = tf.stack(inputs_ts, axis=-1)
 
-    # This groups together a slice of 24 timsteps into one so we can feed the lstm past and futuer weather states in a single step
-    v = []
-    sl = 24
-    for i in range(0, 65):
-        s = weather[:, i: i + sl, :]
-        s = tf.reshape(s, [-1, sl * 14])
-        v.append(s)
-    weather = tf.stack(v, axis=1)
+    # This groups together a slice of 24 timsteps into one so we can feed the lstm
+    # past and futuer weather states in a single step. For now don't use this bit
+    # v = []
+    # sl = 24
+    # for i in range(0, 65):
+    #     s = weather[:, i: i + sl, :]
+    #     s = tf.reshape(s, [-1, sl * 14])
+    #     v.append(s)
+    # weather = tf.stack(v, axis=1)
 
     # first 24 weather points and add irrad as a feat
     weather_irrad = tf.concat([weather[:, :warm_up_steps,], tf.expand_dims(irrad_24, -1)], axis=-1) #[:,22:,]#use this to cut down the warmup to the last x hours
